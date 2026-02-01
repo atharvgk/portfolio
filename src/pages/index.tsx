@@ -11,7 +11,7 @@ import { Seo } from "@/components/Seo";
 import { SpotifyCard } from "@/components/SpotifyCard";
 import { CodingStatsCard } from "@/components/CodingStatsCard";
 import { GitHubContributions } from "@/components/GitHubContributions";
-import { PERSONAL_INFO, PROJECTS, EXPERIENCE, TECH_STACK, EXTRA_PROJECTS, PUBLICATIONS } from "@/data/portfolio";
+import { PERSONAL_INFO, PROJECTS, EXPERIENCE, TECH_STACK, PUBLICATIONS } from "@/data/portfolio";
 import { SpotlightCard } from "@/components/ui/SpotlightCard";
 import { FloatingDock } from "@/components/ui/FloatingDock";
 import { Preloader } from "@/components/Preloader";
