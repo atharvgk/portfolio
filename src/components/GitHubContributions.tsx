@@ -42,7 +42,7 @@ export const GitHubContributions = () => {
         const fetchGitHubActivity = async () => {
             try {
                 // Fetch user events (public activity)
-                const response = await fetch('https://api.github.com/users/dprateek996/events?per_page=100');
+                const response = await fetch('https://api.github.com/users/atharvgk/events?per_page=100');
                 if (!response.ok) {
                     console.error('Failed to fetch GitHub events');
                     setLoading(false);

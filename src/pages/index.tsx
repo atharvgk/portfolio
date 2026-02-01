@@ -11,7 +11,7 @@ import { Seo } from "@/components/Seo";
 import { SpotifyCard } from "@/components/SpotifyCard";
 import { CodingStatsCard } from "@/components/CodingStatsCard";
 import { GitHubContributions } from "@/components/GitHubContributions";
-import { PERSONAL_INFO, PROJECTS, EXPERIENCE, TECH_STACK, EXTRA_PROJECTS } from "@/data/portfolio";
+import { PERSONAL_INFO, PROJECTS, EXPERIENCE, TECH_STACK, EXTRA_PROJECTS, PUBLICATIONS } from "@/data/portfolio";
 import { SpotlightCard } from "@/components/ui/SpotlightCard";
 import { FloatingDock } from "@/components/ui/FloatingDock";
 import { Preloader } from "@/components/Preloader";
@@ -153,7 +153,7 @@ export default function Portfolio() {
                     visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
                   }}
                 >
-                  <LuminousText className="text-5xl sm:text-7xl font-medium tracking-tighter mb-4">
+                  <LuminousText className="text-5xl sm:text-7xl font-medium tracking-tighter mb-4 leading-tight">
                     {PERSONAL_INFO.name}
                   </LuminousText>
                 </motion.div>
@@ -208,8 +208,7 @@ export default function Portfolio() {
                   <div>
                     <h2 className={`${spaceGrotesk.className} text-lg font-bold text-black dark:text-white mb-2`}>About</h2>
                     <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed text-sm max-w-3xl">
-                      I&apos;m a <span className="text-black dark:text-white font-medium">Full Stack Engineer</span> based in <span className="text-accent-400 font-medium">India</span>, building products that solve real problems.
-                      I work across the entire stack—<span className="text-neutral-700 dark:text-neutral-300">UI/UX to deployment</span>—shipping fast, learning faster.
+                      I&apos;m a <span className="text-black dark:text-white font-medium">Software Engineer and Researcher</span>, building scalable backend systems and AI-powered products, from <span className="text-neutral-700 dark:text-neutral-300">distributed pipelines to production grade ML systems</span>.
                     </p>
                   </div>
 
@@ -267,6 +266,31 @@ export default function Portfolio() {
                       <p className="text-accent-400 text-sm font-medium mb-1.5">{job.company}</p>
                       <ul className="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed list-disc pl-4 space-y-1">
                         {job.bullets.map((bullet, k) => (
+                          <li key={k}>{bullet}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </SpotlightCard>
+            </section>
+
+            {/* RESEARCH PUBLICATIONS */}
+            <section className="mb-8">
+              <h2 className={`${spaceGrotesk.className} text-lg font-bold text-black dark:text-white mb-3`}>Publications</h2>
+              <SpotlightCard className="p-5">
+                <div className="space-y-5">
+                  {PUBLICATIONS.map((pub, i) => (
+                    <div key={i} className="relative">
+                      <div className="flex flex-col gap-1 mb-2">
+                        <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-100 leading-snug">{pub.title}</h3>
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs text-neutral-500 font-mono gap-1">
+                          <span className="text-accent-400 font-medium italic">{pub.conference}</span>
+                          <span className="shrink-0">{pub.date}</span>
+                        </div>
+                      </div>
+                      <ul className="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed list-disc pl-4 space-y-1">
+                        {pub.bullets.map((bullet, k) => (
                           <li key={k}>{bullet}</li>
                         ))}
                       </ul>
@@ -348,11 +372,12 @@ export default function Portfolio() {
               </div>
 
               {/* Other Work (Archive) */}
+{/* 
               <div className="mt-6">
                 <div className="flex items-center justify-between mb-3">
                   <h3 className="text-sm font-medium text-neutral-500 dark:text-neutral-400">Other Work</h3>
                   <a
-                    href="https://github.com/dprateek996?tab=repositories"
+                    href="https://github.com/atharvgk?tab=repositories"
                     target="_blank"
                     className="text-xs font-mono text-neutral-500 dark:text-neutral-600 hover:text-neutral-700 dark:hover:text-neutral-400 flex items-center gap-1 transition-colors"
                   >
@@ -374,16 +399,19 @@ export default function Portfolio() {
                       <h4 className="font-medium text-sm text-neutral-700 dark:text-neutral-300 group-hover:text-accent-400 transition-colors truncate">
                         {project.title}
                       </h4>
-                      <p className="text-[10px] text-neutral-500 dark:text-neutral-600 line-clamp-1 mt-1">{project.description}</p>
+                      <p className="text-[10px] text-neutral-500 mt-1 truncate">
+                        {project.tech.join(" • ")}
+                      </p>
                     </motion.a>
                   ))}
                 </div>
               </div>
+*/}
             </section>
 
             {/* TECH STACK SECTION */}
             <section className="mb-10">
-              <h2 className={`${spaceGrotesk.className} text-xl font-bold text-black dark:text-white mb-4`}>Stack</h2>
+              <h2 className={`${spaceGrotesk.className} text-xl font-bold text-black dark:text-white mb-4`}>Tech Stack</h2>
               <SpotlightCard className="py-8 px-8 overflow-hidden relative group">
 
                 {/* Infinite Scroll Container */}
@@ -465,7 +493,7 @@ export default function Portfolio() {
                           alt={tech.name}
                           width={40}
                           height={40}
-                          className="object-contain grayscale brightness-75 group-hover:brightness-100 transition-all duration-300"
+                          className="object-contain transition-all duration-300 hover:scale-110"
                           unoptimized
                         />
                         <span className="text-xs text-neutral-600 dark:text-neutral-500 font-medium group-hover:text-neutral-800 dark:group-hover:text-neutral-300 transition-colors">{tech.name}</span>
@@ -481,7 +509,7 @@ export default function Portfolio() {
                           alt={tech.name}
                           width={40}
                           height={40}
-                          className="object-contain grayscale brightness-75 group-hover:brightness-100 transition-all duration-300"
+                          className="object-contain transition-all duration-300 hover:scale-110"
                           unoptimized
                         />
                         <span className="text-xs text-neutral-600 dark:text-neutral-500 font-medium group-hover:text-neutral-800 dark:group-hover:text-neutral-300 transition-colors">{tech.name}</span>
@@ -496,8 +524,8 @@ export default function Portfolio() {
             <section className="mb-10">
               <div className="flex items-center justify-between mb-6">
                 <h2 className={`${spaceGrotesk.className} text-2xl font-bold text-black dark:text-white`}>GitHub Activity</h2>
-                <a href="https://github.com/dprateek996" target="_blank" className="text-xs font-mono text-neutral-500 dark:text-neutral-400 hover:text-black dark:hover:text-white flex items-center gap-1 transition-colors">
-                  @dprateek996 <ArrowUpRight size={12} />
+                <a href="https://github.com/atharvgk" target="_blank" className="text-xs font-mono text-neutral-500 dark:text-neutral-400 hover:text-black dark:hover:text-white flex items-center gap-1 transition-colors">
+                  @atharvgk <ArrowUpRight size={12} />
                 </a>
               </div>
               <SpotlightCard className="p-6">

@@ -14,44 +14,45 @@ const items = [
     {
         icon: Github,
         label: "GitHub",
-        href: "https://github.com/dprateek996",
+        href: "https://github.com/atharvgk",
         external: true
     },
     {
         icon: FileText,
         label: "Resume",
-        href: "/resume.pdf",
+        href: "/atharv_resume.pdf",
         external: true
     },
     {
         icon: Mail,
         label: "Email",
-        href: "mailto:dprateek996@gmail.com",
+        href: "mailto:atharv.katyarmal@gmail.com",
         external: true
     },
 ];
 
 export const FloatingDock = () => {
-    const [visible, setVisible] = useState(true);
-    const [lastScrollY, setLastScrollY] = useState(0);
+    const [visible, setVisible] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
             const currentScrollY = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
 
-            // Hide when scrolling down fast, show when scrolling up or idle
-            if (currentScrollY > lastScrollY && currentScrollY > 200) {
-                setVisible(false);
-            } else {
-                setVisible(true);
-            }
+            // Show after scrolling past header (approx 100px)
+            const isPastHeader = currentScrollY > 100;
+            
+            // Hide if near bottom/footer (within 100px of end)
+            const isNearBottom = (windowHeight + currentScrollY) >= (documentHeight - 100);
 
-            setLastScrollY(currentScrollY);
+            setVisible(isPastHeader && !isNearBottom);
         };
 
         window.addEventListener("scroll", handleScroll, { passive: true });
+        handleScroll(); // Check on mount
         return () => window.removeEventListener("scroll", handleScroll);
-    }, [lastScrollY]);
+    }, []);
 
     return (
         <motion.nav
@@ -64,7 +65,7 @@ export const FloatingDock = () => {
             }}
             transition={{ duration: 0.2, ease: "easeOut" }}
         >
-            <div className="flex items-center gap-1 px-2 py-2 rounded-2xl bg-white/80 dark:bg-zinc-950/60 backdrop-blur-xl border border-zinc-200 dark:border-zinc-800/50 shadow-lg shadow-black/5 dark:shadow-black/20">
+            <div className="flex items-center gap-1 px-2 py-2 rounded-2xl bg-white/50 dark:bg-zinc-950/30 backdrop-blur-xl border border-zinc-200 dark:border-zinc-800/50 shadow-lg shadow-black/5 dark:shadow-black/20">
                 <TooltipProvider delayDuration={0}>
                     {items.map((item, i) => {
                         const Icon = item.icon;

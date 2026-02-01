@@ -4,7 +4,7 @@ import { ImageResponse } from 'next/og';
 export const runtime = 'edge';
 
 // Image metadata
-export const alt = 'Prateek Dwivedi - Full Stack Engineer';
+export const alt = 'Atharv Katyarmal - Full Stack Engineer';
 export const size = {
     width: 1200,
     height: 630,
@@ -38,10 +38,10 @@ export default async function Image() {
 
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: 40 }}>
                     <h1 style={{ fontSize: 80, fontWeight: 900, color: 'white', margin: 0, letterSpacing: '-0.05em' }}>
-                        PRATEEK DWIVEDI
+                        ATHARV KATYARMAL
                     </h1>
                     <h2 style={{ fontSize: 40, color: '#a1a1aa', marginTop: 20, fontWeight: 400 }}>
-                        Full Stack Engineer • System Architect
+                        Full Stack Engineer
                     </h2>
                 </div>
 
@@ -57,7 +57,7 @@ export default async function Image() {
                     fontFamily: 'monospace',
                     display: 'flex'
                 }}>
-                    Building scalable systems with a 0→1 mindset.
+                    I learn. I build. I break. I fix. I ship.
                 </div>
             </div>
         ),

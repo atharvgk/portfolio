@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 const GITHUB_GRAPHQL_API = 'https://api.github.com/graphql';
-const GITHUB_USERNAME = 'dprateek996';
+const GITHUB_USERNAME = 'atharvgk';
 
 interface ContributionDay {
     date: string;

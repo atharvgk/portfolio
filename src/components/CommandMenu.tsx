@@ -47,18 +47,21 @@ export const CommandMenu = () => {
                                 </Command.Empty>
 
                                 <Command.Group heading="Navigation" className="text-xs text-zinc-500 font-mono mb-2 px-2">
-                                    <Item icon={FileText} text="View Resume" action={() => window.open("/resume.pdf")} />
-                                    <Item icon={Mail} text="Send Email" action={() => window.location.href = "mailto:dprateek996@gmail.com"} />
+                                    <Item icon={FileText} text="View Resume" action={() => window.open("/atharv_resume.pdf")} />
+                                    <Item icon={Mail} text="Send Email" action={() => window.location.href = "mailto:atharv.katyarmal@gmail.com"} />
                                 </Command.Group>
 
                                 <Command.Group heading="Projects" className="text-xs text-zinc-500 font-mono mb-2 px-2">
-                                    <Item icon={Monitor} text="Voice Expense Tracker" action={() => window.open("https://github.com/dprateek996/voice-expense-tracker")} />
-                                    <Item icon={Monitor} text="NexusNote" action={() => window.open("https://github.com/dprateek996/nexusnote")} />
+                                    <Item icon={Monitor} text="Distributed Logging System" action={() => window.open("https://github.com/atharvgk/Distributed-Logging-System")} />
+                                    <Item icon={Monitor} text="Lambda Serverless" action={() => window.open("https://github.com/atharvgk/LAMBDA-Serveless-Function-Platform")} />
+                                    <Item icon={Monitor} text="WhisperBite" action={() => window.open("https://github.com/atharvgk/WhisperBite")} />
+                                    <Item icon={Monitor} text="Memory Mate" action={() => window.open("https://github.com/atharvgk/Memory-Mate")} />
+                                    <Item icon={Monitor} text="Gradopia" action={() => window.open("https://github.com/atharvgk/Gradopia")} />
                                 </Command.Group>
 
                                 <Command.Group heading="Socials" className="text-xs text-zinc-500 font-mono mb-2 px-2">
-                                    <Item icon={Github} text="GitHub" action={() => window.open("https://github.com/dprateek996")} />
-                                    <Item icon={Linkedin} text="LinkedIn" action={() => window.open("https://linkedin.com/in/prateek-dwivedi-557725212")} />
+                                    <Item icon={Github} text="GitHub" action={() => window.open("https://github.com/atharvgk")} />
+                                    <Item icon={Linkedin} text="LinkedIn" action={() => window.open("https://www.linkedin.com/in/atharv-katyarmal-990304250/")} />
                                 </Command.Group>
                             </Command.List>
                         </Command>
