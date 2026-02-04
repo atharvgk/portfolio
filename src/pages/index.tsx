@@ -1,7 +1,7 @@
 import React from "react";
 import { Inter, Space_Grotesk } from "next/font/google";
 import { AnimatePresence, motion } from "framer-motion";
-import { MapPin, ArrowUpRight, Terminal } from "lucide-react";
+import { MapPin, ArrowUpRight, Terminal, Github } from "lucide-react";
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 
@@ -11,12 +11,14 @@ import { Seo } from "@/components/Seo";
 import { SpotifyCard } from "@/components/SpotifyCard";
 import { CodingStatsCard } from "@/components/CodingStatsCard";
 import { GitHubContributions } from "@/components/GitHubContributions";
+import { ContactForm } from "@/components/ContactForm";
 import { PERSONAL_INFO, PROJECTS, EXPERIENCE, TECH_STACK, PUBLICATIONS } from "@/data/portfolio";
 import { SpotlightCard } from "@/components/ui/SpotlightCard";
 import { FloatingDock } from "@/components/ui/FloatingDock";
 import { Preloader } from "@/components/Preloader";
 import PetCursor from "@/components/ui/PetCursor";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Sidebar } from "@/components/ui/Sidebar";
 
 import { LuminousText } from "@/components/ui/LuminousText";
 
@@ -115,6 +117,7 @@ export default function Portfolio() {
           <PetCursor />
           <Header />
           <FloatingDock />
+          <Sidebar />
 
           {/* CENTERED BENTO CONTAINER */}
           <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 md:py-16">
@@ -171,12 +174,24 @@ export default function Portfolio() {
 
                 {/* Social Links - Minimal Row */}
                 <motion.div
-                  className="flex items-center gap-4 mt-8"
+                  className="flex items-center gap-6 mt-8"
                   variants={{
                     hidden: { opacity: 0 },
                     visible: { opacity: 1, transition: { delay: 0.2 } }
                   }}
                 >
+                  {/* Resume Button */}
+                  <a
+                    href="/atharv_resume.pdf"
+                    target="_blank"
+                    className="flex items-center gap-2 px-4 py-2 bg-neutral-900 dark:bg-white text-white dark:text-black rounded-lg text-sm font-medium hover:opacity-90 transition-opacity"
+                  >
+                    View Resume <ArrowUpRight size={14} />
+                  </a>
+
+                  {/* Divider */}
+                  <div className="h-4 w-px bg-zinc-300 dark:bg-zinc-700" />
+
                   <TooltipProvider delayDuration={0}>
                     {PERSONAL_INFO.socials.map((social) => (
                       <Tooltip key={social.name}>
@@ -201,7 +216,7 @@ export default function Portfolio() {
             </section>
 
             {/* ABOUT SECTION - Dashboard Style */}
-            <section className="mb-10">
+            <section id="about" className="mb-10">
               <SpotlightCard className="p-6 md:p-8">
                 <div className="flex flex-col gap-6">
                   {/* Top Area: Bio */}
@@ -253,12 +268,12 @@ export default function Portfolio() {
             </section>
 
             {/* EXPERIENCE SECTION */}
-            <section className="mb-8">
+            <section id="experience" className="mb-8">
               <h2 className={`${spaceGrotesk.className} text-lg font-bold text-black dark:text-white mb-3`}>Experience</h2>
-              <SpotlightCard className="p-5">
-                <div className="space-y-5">
-                  {EXPERIENCE.map((job, i) => (
-                    <div key={i} className="relative">
+              <div className="flex flex-col gap-4">
+                {EXPERIENCE.map((job, i) => (
+                  <SpotlightCard key={i} className="p-5">
+                    <div className="relative">
                       <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-0.5 mb-0.5">
                         <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-100">{job.role}</h3>
                         <span className="text-[11px] font-mono text-neutral-500">{job.date}</span>
@@ -270,13 +285,13 @@ export default function Portfolio() {
                         ))}
                       </ul>
                     </div>
-                  ))}
-                </div>
-              </SpotlightCard>
+                  </SpotlightCard>
+                ))}
+              </div>
             </section>
 
             {/* RESEARCH PUBLICATIONS */}
-            <section className="mb-8">
+            <section id="publications" className="mb-8">
               <h2 className={`${spaceGrotesk.className} text-lg font-bold text-black dark:text-white mb-3`}>Publications</h2>
               <SpotlightCard className="p-5">
                 <div className="space-y-5">
@@ -301,7 +316,7 @@ export default function Portfolio() {
             </section>
 
             {/* PROJECTS SECTION */}
-            <section className="mb-8">
+            <section id="projects" className="mb-8">
               <h2 className={`${spaceGrotesk.className} text-lg font-bold text-black dark:text-white mb-3`}>Projects</h2>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -318,9 +333,18 @@ export default function Portfolio() {
                         <span className="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-accent-500/10 text-accent-500 border border-accent-500/20">
                           Featured
                         </span>
-                        <a href={project.link} target="_blank" className="text-neutral-500 hover:text-black dark:hover:text-white transition-colors p-1.5 hover:bg-zinc-100 dark:hover:bg-neutral-800 rounded">
-                          <ArrowUpRight size={18} />
-                        </a>
+                        <div className="flex gap-2">
+                          {project.repo && (
+                            <a href={project.repo} target="_blank" className="text-neutral-500 hover:text-black dark:hover:text-white transition-colors p-1.5 hover:bg-zinc-100 dark:hover:bg-neutral-800 rounded">
+                              <Github size={18} />
+                            </a>
+                          )}
+                          {project.live && (
+                            <a href={project.live} target="_blank" className="text-neutral-500 hover:text-black dark:hover:text-white transition-colors p-1.5 hover:bg-zinc-100 dark:hover:bg-neutral-800 rounded">
+                              <ArrowUpRight size={18} />
+                            </a>
+                          )}
+                        </div>
                       </div>
 
                       <h3 className={`${spaceGrotesk.className} text-xl font-bold text-black dark:text-white mb-1.5`}>{project.title}</h3>
@@ -348,9 +372,18 @@ export default function Portfolio() {
                         <div className="p-2 bg-zinc-100/50 dark:bg-neutral-800/50 rounded-lg border border-zinc-200/50 dark:border-neutral-700/50">
                           <Terminal size={16} className="text-neutral-400" />
                         </div>
-                        <a href={project.link} target="_blank" className="text-neutral-500 hover:text-black dark:hover:text-white transition-colors">
-                          <ArrowUpRight size={16} />
-                        </a>
+                        <div className="flex gap-2">
+                          {project.repo && (
+                            <a href={project.repo} target="_blank" className="text-neutral-500 hover:text-black dark:hover:text-white transition-colors">
+                              <Github size={16} />
+                            </a>
+                          )}
+                          {project.live && (
+                            <a href={project.live} target="_blank" className="text-neutral-500 hover:text-black dark:hover:text-white transition-colors">
+                              <ArrowUpRight size={16} />
+                            </a>
+                          )}
+                        </div>
                       </div>
 
                       <h3 className={`${spaceGrotesk.className} text-base font-bold text-black dark:text-white mb-1`}>{project.title}</h3>
@@ -410,7 +443,7 @@ export default function Portfolio() {
             </section>
 
             {/* TECH STACK SECTION */}
-            <section className="mb-10">
+            <section id="stack" className="mb-10">
               <h2 className={`${spaceGrotesk.className} text-xl font-bold text-black dark:text-white mb-4`}>Tech Stack</h2>
               <SpotlightCard className="py-8 px-8 overflow-hidden relative group">
 
@@ -521,7 +554,7 @@ export default function Portfolio() {
             </section>
 
             {/* GITHUB CONTRIBUTION SECTION */}
-            <section className="mb-10">
+            <section id="github" className="mb-10">
               <div className="flex items-center justify-between mb-6">
                 <h2 className={`${spaceGrotesk.className} text-2xl font-bold text-black dark:text-white`}>GitHub Activity</h2>
                 <a href="https://github.com/atharvgk" target="_blank" className="text-xs font-mono text-neutral-500 dark:text-neutral-400 hover:text-black dark:hover:text-white flex items-center gap-1 transition-colors">
@@ -549,11 +582,11 @@ export default function Portfolio() {
                     ))}
                   </div>
                 </div>
-                <div className="w-full overflow-x-auto custom-scrollbar opacity-90 hover:opacity-100 transition-opacity flex justify-end py-2 mb-8">
+                <div className="w-full flex justify-center py-2 mb-8">
                   <ActivityCalendar
                     data={yearData[visibleYear]?.contributions || []}
                     loading={Object.keys(yearData).length === 0}
-                    blockSize={12}
+                    blockSize={10}
                     blockRadius={2}
                     blockMargin={3}
                     fontSize={12}
@@ -571,15 +604,7 @@ export default function Portfolio() {
               </SpotlightCard>
             </section>
 
-            {/* GET IN TOUCH */}
-            <section className="text-center py-6">
-              <a
-                href={`mailto:${PERSONAL_INFO.email}`}
-                className="inline-flex items-center gap-2 text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white text-sm font-medium transition-colors"
-              >
-                Get in Touch <ArrowUpRight size={14} />
-              </a>
-            </section>
+            <ContactForm />
 
             {/* Footer */}
             <footer className="py-4 text-center text-neutral-400 dark:text-neutral-700 text-[10px] border-t border-zinc-200 dark:border-neutral-900">

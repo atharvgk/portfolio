@@ -25,17 +25,10 @@ export default async function handler(
         }
 
         // summaries endpoint returns data as an array
+        // summaries endpoint returns data as an array
         const summaries = statsData.data;
-        let activeDay = summaries[summaries.length - 1]; // Default to today
-
-        // Find the last day with activity if today is empty
-        // We iterate backwards from the latest day
-        for (let i = summaries.length - 1; i >= 0; i--) {
-            if ((summaries[i].grand_total?.total_seconds || 0) > 0) {
-                activeDay = summaries[i];
-                break;
-            }
-        }
+        // The last item in the array is "today" (because we fetched up to "tomorrow")
+        const activeDay = summaries[summaries.length - 1];
 
         const data = activeDay;
 
