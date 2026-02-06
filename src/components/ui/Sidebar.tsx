@@ -36,7 +36,19 @@ export const Sidebar = () => {
             if (element) observer.observe(element);
         });
 
-        return () => observer.disconnect();
+        // Add scroll listener to detect bottom of page
+        const handleScroll = () => {
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
+                setActiveSection(sections[sections.length - 1].id);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            observer.disconnect();
+            window.removeEventListener('scroll', handleScroll);
+        };
     }, []);
 
     return (

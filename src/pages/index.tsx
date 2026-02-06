@@ -217,54 +217,61 @@ export default function Portfolio() {
 
             {/* ABOUT SECTION - Dashboard Style */}
             <section id="about" className="mb-10">
-              <SpotlightCard className="p-6 md:p-8">
-                <div className="flex flex-col gap-6">
-                  {/* Top Area: Bio */}
-                  <div>
-                    <h2 className={`${spaceGrotesk.className} text-lg font-bold text-black dark:text-white mb-2`}>About</h2>
-                    <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed text-sm max-w-3xl">
-                      I&apos;m a <span className="text-black dark:text-white font-medium">Software Engineer and Researcher</span>, building scalable backend systems and AI-powered products, from <span className="text-neutral-700 dark:text-neutral-300">distributed pipelines to production grade ML systems</span>.
-                    </p>
-                  </div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.5 }}
+              >
+                <SpotlightCard className="p-6 md:p-8">
+                  <div className="flex flex-col gap-6">
+                    {/* Top Area: Bio */}
+                    <div>
+                      <h2 className={`${spaceGrotesk.className} text-lg font-bold text-black dark:text-white mb-2`}>About</h2>
+                      <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed text-sm max-w-3xl">
+                        I&apos;m a <span className="text-black dark:text-white font-medium">Software Engineer and Researcher</span>, building scalable backend systems and AI-powered products, from <span className="text-neutral-700 dark:text-neutral-300">distributed pipelines to production grade ML systems</span>.
+                      </p>
+                    </div>
 
-                  {/* Horizontal Divider */}
-                  <div className="h-px bg-zinc-800/20 w-full" />
+                    {/* Horizontal Divider */}
+                    <div className="h-px bg-zinc-800/20 w-full" />
 
-                  {/* Bottom Area: Status Bar */}
-                  <div className="grid grid-cols-2 gap-y-4 md:flex md:flex-nowrap md:items-center md:gap-x-8 md:gap-y-3">
+                    {/* Bottom Area: Status Bar */}
+                    <div className="grid grid-cols-2 gap-y-4 md:flex md:flex-nowrap md:items-center md:gap-x-8 md:gap-y-3">
 
-                    {/* Location */}
-                    <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-2 shrink-0">
-                      <div className="flex items-center gap-2">
-                        <MapPin size={12} className="text-zinc-500" />
-                        <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-wider md:hidden">Location</span>
+                      {/* Location */}
+                      <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-2 shrink-0">
+                        <div className="flex items-center gap-2">
+                          <MapPin size={12} className="text-zinc-500" />
+                          <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-wider md:hidden">Location</span>
+                        </div>
+                        <span className="text-xs font-medium text-neutral-700 dark:text-zinc-300">India <span className="text-neutral-500 dark:text-zinc-500 text-[10px]">(UTC+5:30)</span></span>
                       </div>
-                      <span className="text-xs font-medium text-neutral-700 dark:text-zinc-300">India <span className="text-neutral-500 dark:text-zinc-500 text-[10px]">(UTC+5:30)</span></span>
-                    </div>
 
-                    <span className="opacity-10 hidden md:block text-zinc-500">•</span>
+                      <span className="opacity-10 hidden md:block text-zinc-500">•</span>
 
-                    {/* Spotify */}
-                    <div className="shrink-0">
-                      <SpotifyCard />
-                    </div>
+                      {/* Spotify */}
+                      <div className="shrink-0">
+                        <SpotifyCard />
+                      </div>
 
-                    <span className="opacity-10 hidden md:block text-zinc-500">•</span>
+                      <span className="opacity-10 hidden md:block text-zinc-500">•</span>
 
-                    {/* Coding */}
-                    <div className="shrink-0">
-                      <CodingStatsCard />
-                    </div>
+                      {/* Coding */}
+                      <div className="shrink-0">
+                        <CodingStatsCard />
+                      </div>
 
-                    <span className="opacity-10 hidden md:block text-zinc-500">•</span>
+                      <span className="opacity-10 hidden md:block text-zinc-500">•</span>
 
-                    {/* Learning */}
-                    <div className="shrink-0 col-span-2 md:col-span-1">
-                      <CurrentlyLearning />
+                      {/* Learning */}
+                      <div className="shrink-0 col-span-2 md:col-span-1">
+                        <CurrentlyLearning />
+                      </div>
                     </div>
                   </div>
-                </div>
-              </SpotlightCard>
+                </SpotlightCard>
+              </motion.div>
             </section>
 
             {/* EXPERIENCE SECTION */}
@@ -272,20 +279,28 @@ export default function Portfolio() {
               <h2 className={`${spaceGrotesk.className} text-lg font-bold text-black dark:text-white mb-3`}>Experience</h2>
               <div className="flex flex-col gap-4">
                 {EXPERIENCE.map((job, i) => (
-                  <SpotlightCard key={i} className="p-5">
-                    <div className="relative">
-                      <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-0.5 mb-0.5">
-                        <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-100">{job.role}</h3>
-                        <span className="text-[11px] font-mono text-neutral-500">{job.date}</span>
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                  >
+                    <SpotlightCard className="p-5">
+                      <div className="relative">
+                        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-0.5 mb-0.5">
+                          <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-100">{job.role}</h3>
+                          <span className="text-[11px] font-mono text-neutral-500">{job.date}</span>
+                        </div>
+                        <p className="text-accent-400 text-sm font-medium mb-1.5">{job.company}</p>
+                        <ul className="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed list-disc pl-4 space-y-1">
+                          {job.bullets.map((bullet, k) => (
+                            <li key={k}>{bullet}</li>
+                          ))}
+                        </ul>
                       </div>
-                      <p className="text-accent-400 text-sm font-medium mb-1.5">{job.company}</p>
-                      <ul className="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed list-disc pl-4 space-y-1">
-                        {job.bullets.map((bullet, k) => (
-                          <li key={k}>{bullet}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </SpotlightCard>
+                    </SpotlightCard>
+                  </motion.div>
                 ))}
               </div>
             </section>
@@ -293,26 +308,33 @@ export default function Portfolio() {
             {/* RESEARCH PUBLICATIONS */}
             <section id="publications" className="mb-8">
               <h2 className={`${spaceGrotesk.className} text-lg font-bold text-black dark:text-white mb-3`}>Publications</h2>
-              <SpotlightCard className="p-5">
-                <div className="space-y-5">
-                  {PUBLICATIONS.map((pub, i) => (
-                    <div key={i} className="relative">
-                      <div className="flex flex-col gap-1 mb-2">
-                        <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-100 leading-snug">{pub.title}</h3>
-                        <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs text-neutral-500 font-mono gap-1">
-                          <span className="text-accent-400 font-medium italic">{pub.conference}</span>
-                          <span className="shrink-0">{pub.date}</span>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.5 }}
+              >
+                <SpotlightCard className="p-5">
+                  <div className="space-y-5">
+                    {PUBLICATIONS.map((pub, i) => (
+                      <div key={i} className="relative">
+                        <div className="flex flex-col gap-1 mb-2">
+                          <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-100 leading-snug">{pub.title}</h3>
+                          <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs text-neutral-500 font-mono gap-1">
+                            <span className="text-accent-400 font-medium italic">{pub.conference}</span>
+                            <span className="shrink-0">{pub.date}</span>
+                          </div>
                         </div>
+                        <ul className="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed list-disc pl-4 space-y-1">
+                          {pub.bullets.map((bullet, k) => (
+                            <li key={k}>{bullet}</li>
+                          ))}
+                        </ul>
                       </div>
-                      <ul className="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed list-disc pl-4 space-y-1">
-                        {pub.bullets.map((bullet, k) => (
-                          <li key={k}>{bullet}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
-              </SpotlightCard>
+                    ))}
+                  </div>
+                </SpotlightCard>
+              </motion.div>
             </section>
 
             {/* PROJECTS SECTION */}
@@ -322,85 +344,100 @@ export default function Portfolio() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {/* Featured Project - Full Width */}
                 {PROJECTS.filter(p => p.featured).map((project, i) => (
-                  <SpotlightCard
+                  <motion.div
                     key={i}
-                    className="md:col-span-2 p-6 group relative overflow-hidden"
+                    className="md:col-span-2"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ duration: 0.5 }}
                   >
-                    <div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-br ${project.gradient} blur-[80px] rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-500 pointer-events-none`} />
+                    <SpotlightCard
+                      className="p-6 group relative overflow-hidden h-full"
+                    >
+                      <div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-br ${project.gradient} blur-[80px] rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-500 pointer-events-none`} />
 
-                    <div className="relative z-10">
-                      <div className="flex justify-between items-start mb-3">
-                        <span className="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-accent-500/10 text-accent-500 border border-accent-500/20">
-                          Featured
-                        </span>
-                        <div className="flex gap-2">
-                          {project.repo && (
-                            <a href={project.repo} target="_blank" className="text-neutral-500 hover:text-black dark:hover:text-white transition-colors p-1.5 hover:bg-zinc-100 dark:hover:bg-neutral-800 rounded">
-                              <Github size={18} />
-                            </a>
-                          )}
-                          {project.live && (
-                            <a href={project.live} target="_blank" className="text-neutral-500 hover:text-black dark:hover:text-white transition-colors p-1.5 hover:bg-zinc-100 dark:hover:bg-neutral-800 rounded">
-                              <ArrowUpRight size={18} />
-                            </a>
-                          )}
+                      <div className="relative z-10">
+                        <div className="flex justify-between items-start mb-3">
+                          <span className="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-accent-500/10 text-accent-500 border border-accent-500/20">
+                            Featured
+                          </span>
+                          <div className="flex gap-2">
+                            {project.repo && (
+                              <a href={project.repo} target="_blank" className="text-neutral-500 hover:text-black dark:hover:text-white transition-colors p-1.5 hover:bg-zinc-100 dark:hover:bg-neutral-800 rounded">
+                                <Github size={18} />
+                              </a>
+                            )}
+                            {project.live && (
+                              <a href={project.live} target="_blank" className="text-neutral-500 hover:text-black dark:hover:text-white transition-colors p-1.5 hover:bg-zinc-100 dark:hover:bg-neutral-800 rounded">
+                                <ArrowUpRight size={18} />
+                              </a>
+                            )}
+                          </div>
+                        </div>
+
+                        <h3 className={`${spaceGrotesk.className} text-xl font-bold text-black dark:text-white mb-1.5`}>{project.title}</h3>
+                        <p className="text-neutral-600 dark:text-neutral-400 leading-snug mb-3 text-sm">{project.description}</p>
+
+                        <div className="flex flex-wrap gap-2">
+                          {project.tech.map(t => (
+                            <span key={t} className="text-xs font-medium text-neutral-600 dark:text-neutral-400 bg-transparent border border-dashed border-zinc-300 dark:border-neutral-600 px-2.5 py-1 rounded-md transition-all duration-300 hover:scale-105 hover:border-accent-400 hover:text-accent-400 hover:bg-zinc-100 dark:hover:bg-neutral-900 cursor-default">
+                              {t}
+                            </span>
+                          ))}
                         </div>
                       </div>
-
-                      <h3 className={`${spaceGrotesk.className} text-xl font-bold text-black dark:text-white mb-1.5`}>{project.title}</h3>
-                      <p className="text-neutral-600 dark:text-neutral-400 leading-snug mb-3 text-sm">{project.description}</p>
-
-                      <div className="flex flex-wrap gap-2">
-                        {project.tech.map(t => (
-                          <span key={t} className="text-xs font-medium text-neutral-600 dark:text-neutral-400 bg-transparent border border-dashed border-zinc-300 dark:border-neutral-600 px-2.5 py-1 rounded-md transition-all duration-300 hover:scale-105 hover:border-accent-400 hover:text-accent-400 hover:bg-zinc-100 dark:hover:bg-neutral-900 cursor-default">
-                            {t}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </SpotlightCard>
+                    </SpotlightCard>
+                  </motion.div>
                 ))}
 
                 {/* Other Projects */}
                 {PROJECTS.filter(p => !p.featured).map((project, i) => (
-                  <SpotlightCard
+                  <motion.div
                     key={i}
-                    className="p-5 group relative overflow-hidden"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
                   >
-                    <div className="relative z-10 flex flex-col h-full">
-                      <div className="flex justify-between items-start mb-3">
-                        <div className="p-2 bg-zinc-100/50 dark:bg-neutral-800/50 rounded-lg border border-zinc-200/50 dark:border-neutral-700/50">
-                          <Terminal size={16} className="text-neutral-400" />
+                    <SpotlightCard
+                      className="p-5 group relative overflow-hidden h-full"
+                    >
+                      <div className="relative z-10 flex flex-col h-full">
+                        <div className="flex justify-between items-start mb-3">
+                          <div className="p-2 bg-zinc-100/50 dark:bg-neutral-800/50 rounded-lg border border-zinc-200/50 dark:border-neutral-700/50">
+                            <Terminal size={16} className="text-neutral-400" />
+                          </div>
+                          <div className="flex gap-2">
+                            {project.repo && (
+                              <a href={project.repo} target="_blank" className="text-neutral-500 hover:text-black dark:hover:text-white transition-colors">
+                                <Github size={16} />
+                              </a>
+                            )}
+                            {project.live && (
+                              <a href={project.live} target="_blank" className="text-neutral-500 hover:text-black dark:hover:text-white transition-colors">
+                                <ArrowUpRight size={16} />
+                              </a>
+                            )}
+                          </div>
                         </div>
-                        <div className="flex gap-2">
-                          {project.repo && (
-                            <a href={project.repo} target="_blank" className="text-neutral-500 hover:text-black dark:hover:text-white transition-colors">
-                              <Github size={16} />
-                            </a>
-                          )}
-                          {project.live && (
-                            <a href={project.live} target="_blank" className="text-neutral-500 hover:text-black dark:hover:text-white transition-colors">
-                              <ArrowUpRight size={16} />
-                            </a>
-                          )}
+
+                        <h3 className={`${spaceGrotesk.className} text-base font-bold text-black dark:text-white mb-1`}>{project.title}</h3>
+                        <p className="text-[11px] text-neutral-500 leading-snug mb-2 line-clamp-2">{project.description}</p>
+
+                        <div className="flex flex-wrap gap-1.5 mt-auto pt-3">
+                          {project.tech.map((tech) => (
+                            <span
+                              key={tech}
+                              className="text-[10px] text-neutral-600 dark:text-neutral-400 bg-transparent border border-dashed border-zinc-300 dark:border-neutral-700 px-2 py-0.5 rounded-md transition-all duration-300 hover:scale-105 hover:border-accent-500 hover:text-accent-400 hover:bg-zinc-100 dark:hover:bg-neutral-900 cursor-default"
+                            >
+                              {tech}
+                            </span>
+                          ))}
                         </div>
                       </div>
-
-                      <h3 className={`${spaceGrotesk.className} text-base font-bold text-black dark:text-white mb-1`}>{project.title}</h3>
-                      <p className="text-[11px] text-neutral-500 leading-snug mb-2 line-clamp-2">{project.description}</p>
-
-                      <div className="flex flex-wrap gap-1.5 mt-auto pt-3">
-                        {project.tech.map((tech) => (
-                          <span
-                            key={tech}
-                            className="text-[10px] text-neutral-600 dark:text-neutral-400 bg-transparent border border-dashed border-zinc-300 dark:border-neutral-700 px-2 py-0.5 rounded-md transition-all duration-300 hover:scale-105 hover:border-accent-500 hover:text-accent-400 hover:bg-zinc-100 dark:hover:bg-neutral-900 cursor-default"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </SpotlightCard>
+                    </SpotlightCard>
+                  </motion.div>
                 ))}
               </div>
 
@@ -445,112 +482,119 @@ export default function Portfolio() {
             {/* TECH STACK SECTION */}
             <section id="stack" className="mb-10">
               <h2 className={`${spaceGrotesk.className} text-xl font-bold text-black dark:text-white mb-4`}>Tech Stack</h2>
-              <SpotlightCard className="py-8 px-8 overflow-hidden relative group">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.5 }}
+              >
+                <SpotlightCard className="py-8 px-8 overflow-hidden relative group">
 
-                {/* Infinite Scroll Container */}
-                <div
-                  ref={(el) => {
-                    if (el) {
-                      const animation = el.animate([
-                        { transform: 'translateX(0)' },
-                        { transform: 'translateX(-50%)' }
-                      ], {
-                        duration: 25000,
-                        iterations: Infinity,
-                        easing: 'linear'
-                      });
+                  {/* Infinite Scroll Container */}
+                  <div
+                    ref={(el) => {
+                      if (el) {
+                        const animation = el.animate([
+                          { transform: 'translateX(0)' },
+                          { transform: 'translateX(-50%)' }
+                        ], {
+                          duration: 25000,
+                          iterations: Infinity,
+                          easing: 'linear'
+                        });
 
-                      // Store animation on element to access in handlers
-                      (el as HTMLDivElement & { _animation?: Animation })._animation = animation;
+                        // Store animation on element to access in handlers
+                        (el as HTMLDivElement & { _animation?: Animation })._animation = animation;
 
-                      // Ensure running
-                      animation.play();
-                    }
-                  }}
-                  className="flex w-max"
-                  onMouseEnter={(e) => {
-                    const animation = (e.currentTarget as HTMLDivElement & { _animation?: Animation })._animation;
-                    if (animation) {
-                      // Smoothly decelerate
-                      const targetRate = 0.3; // Slower speed
-                      const startRate = animation.playbackRate;
-                      const duration = 500; // ms
-                      const startTime = performance.now();
+                        // Ensure running
+                        animation.play();
+                      }
+                    }}
+                    className="flex w-max"
+                    onMouseEnter={(e) => {
+                      const animation = (e.currentTarget as HTMLDivElement & { _animation?: Animation })._animation;
+                      if (animation) {
+                        // Smoothly decelerate
+                        const targetRate = 0.3; // Slower speed
+                        const startRate = animation.playbackRate;
+                        const duration = 500; // ms
+                        const startTime = performance.now();
 
-                      const tick = (now: number) => {
-                        const elapsed = now - startTime;
-                        const progress = Math.min(elapsed / duration, 1);
-                        // Ease out cubic
-                        const ease = 1 - Math.pow(1 - progress, 3);
+                        const tick = (now: number) => {
+                          const elapsed = now - startTime;
+                          const progress = Math.min(elapsed / duration, 1);
+                          // Ease out cubic
+                          const ease = 1 - Math.pow(1 - progress, 3);
 
-                        animation.playbackRate = startRate + (targetRate - startRate) * ease;
+                          animation.playbackRate = startRate + (targetRate - startRate) * ease;
 
-                        if (progress < 1) {
-                          requestAnimationFrame(tick);
-                        }
-                      };
-                      requestAnimationFrame(tick);
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    const animation = (e.currentTarget as HTMLDivElement & { _animation?: Animation })._animation;
-                    if (animation) {
-                      // Smoothly accelerate back
-                      const targetRate = 1; // Normal speed
-                      const startRate = animation.playbackRate;
-                      const duration = 500; // ms
-                      const startTime = performance.now();
+                          if (progress < 1) {
+                            requestAnimationFrame(tick);
+                          }
+                        };
+                        requestAnimationFrame(tick);
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      const animation = (e.currentTarget as HTMLDivElement & { _animation?: Animation })._animation;
+                      if (animation) {
+                        // Smoothly accelerate back
+                        const targetRate = 1; // Normal speed
+                        const startRate = animation.playbackRate;
+                        const duration = 500; // ms
+                        const startTime = performance.now();
 
-                      const tick = (now: number) => {
-                        const elapsed = now - startTime;
-                        const progress = Math.min(elapsed / duration, 1);
-                        // Ease out cubic
-                        const ease = 1 - Math.pow(1 - progress, 3);
+                        const tick = (now: number) => {
+                          const elapsed = now - startTime;
+                          const progress = Math.min(elapsed / duration, 1);
+                          // Ease out cubic
+                          const ease = 1 - Math.pow(1 - progress, 3);
 
-                        animation.playbackRate = startRate + (targetRate - startRate) * ease;
+                          animation.playbackRate = startRate + (targetRate - startRate) * ease;
 
-                        if (progress < 1) {
-                          requestAnimationFrame(tick);
-                        }
-                      };
-                      requestAnimationFrame(tick);
-                    }
-                  }}
-                >
-                  {/* First set */}
-                  <div className="flex items-center gap-12 pr-12">
-                    {TECH_STACK.map((tech, i) => (
-                      <div key={`a-${i}`} className="flex flex-col items-center gap-3 group">
-                        <Image
-                          src={tech.icon}
-                          alt={tech.name}
-                          width={40}
-                          height={40}
-                          className="object-contain transition-all duration-300 hover:scale-110"
-                          unoptimized
-                        />
-                        <span className="text-xs text-neutral-600 dark:text-neutral-500 font-medium group-hover:text-neutral-800 dark:group-hover:text-neutral-300 transition-colors">{tech.name}</span>
-                      </div>
-                    ))}
+                          if (progress < 1) {
+                            requestAnimationFrame(tick);
+                          }
+                        };
+                        requestAnimationFrame(tick);
+                      }
+                    }}
+                  >
+                    {/* First set */}
+                    <div className="flex items-center gap-12 pr-12">
+                      {TECH_STACK.map((tech, i) => (
+                        <div key={`a-${i}`} className="flex flex-col items-center gap-3 group">
+                          <Image
+                            src={tech.icon}
+                            alt={tech.name}
+                            width={40}
+                            height={40}
+                            className="object-contain transition-all duration-300 hover:scale-110"
+                            unoptimized
+                          />
+                          <span className="text-xs text-neutral-600 dark:text-neutral-500 font-medium group-hover:text-neutral-800 dark:group-hover:text-neutral-300 transition-colors">{tech.name}</span>
+                        </div>
+                      ))}
+                    </div>
+                    {/* Duplicate set for seamless loop */}
+                    <div className="flex items-center gap-12 pr-12">
+                      {TECH_STACK.map((tech, i) => (
+                        <div key={`b-${i}`} className="flex flex-col items-center gap-3 group">
+                          <Image
+                            src={tech.icon}
+                            alt={tech.name}
+                            width={40}
+                            height={40}
+                            className="object-contain transition-all duration-300 hover:scale-110"
+                            unoptimized
+                          />
+                          <span className="text-xs text-neutral-600 dark:text-neutral-500 font-medium group-hover:text-neutral-800 dark:group-hover:text-neutral-300 transition-colors">{tech.name}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                  {/* Duplicate set for seamless loop */}
-                  <div className="flex items-center gap-12 pr-12">
-                    {TECH_STACK.map((tech, i) => (
-                      <div key={`b-${i}`} className="flex flex-col items-center gap-3 group">
-                        <Image
-                          src={tech.icon}
-                          alt={tech.name}
-                          width={40}
-                          height={40}
-                          className="object-contain transition-all duration-300 hover:scale-110"
-                          unoptimized
-                        />
-                        <span className="text-xs text-neutral-600 dark:text-neutral-500 font-medium group-hover:text-neutral-800 dark:group-hover:text-neutral-300 transition-colors">{tech.name}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </SpotlightCard>
+                </SpotlightCard>
+              </motion.div>
             </section>
 
             {/* GITHUB CONTRIBUTION SECTION */}
@@ -561,50 +605,64 @@ export default function Portfolio() {
                   @atharvgk <ArrowUpRight size={12} />
                 </a>
               </div>
-              <SpotlightCard className="p-6">
-                {/* Contribution count label */}
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-sm text-neutral-600 dark:text-neutral-400">
-                    <span className="font-semibold text-black dark:text-white">{yearData[visibleYear]?.total || 0}</span> contributions in {visibleYear}
-                  </span>
-                  <div className="flex gap-2">
-                    {[2025, 2026].map((year) => (
-                      <button
-                        key={year}
-                        onClick={() => setVisibleYear(year)}
-                        className={`text-xs px-2 py-1 rounded transition-all ${visibleYear === year
-                          ? 'bg-accent-500/20 text-accent-400 font-medium'
-                          : 'text-neutral-500 hover:text-black dark:hover:text-white'
-                          }`}
-                      >
-                        {year}
-                      </button>
-                    ))}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.5 }}
+              >
+                <SpotlightCard className="p-6">
+                  {/* Contribution count label */}
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-sm text-neutral-600 dark:text-neutral-400">
+                      <span className="font-semibold text-black dark:text-white">{yearData[visibleYear]?.total || 0}</span> contributions in {visibleYear}
+                    </span>
+                    <div className="flex gap-2">
+                      {[2025, 2026].map((year) => (
+                        <button
+                          key={year}
+                          onClick={() => setVisibleYear(year)}
+                          className={`text-xs px-2 py-1 rounded transition-all ${visibleYear === year
+                            ? 'bg-accent-500/20 text-accent-400 font-medium'
+                            : 'text-neutral-500 hover:text-black dark:hover:text-white'
+                            }`}
+                        >
+                          {year}
+                        </button>
+                      ))}
+                    </div>
                   </div>
-                </div>
-                <div className="w-full flex justify-center py-2 mb-8">
-                  <ActivityCalendar
-                    data={yearData[visibleYear]?.contributions || []}
-                    loading={Object.keys(yearData).length === 0}
-                    blockSize={10}
-                    blockRadius={2}
-                    blockMargin={3}
-                    fontSize={12}
-                    theme={{
-                      dark: ['#161b22', '#0e4429', '#006d32', '#26a641', '#39d353'],
-                      light: ['#ebedf0', '#9be9a8', '#40c463', '#30a14e', '#216e39'],
-                    }}
-                    colorScheme={isDarkMode ? 'dark' : 'light'}
-                    showWeekdayLabels={true}
-                  />
-                </div>
+                  <div className="w-full flex justify-center py-2 mb-8">
+                    <ActivityCalendar
+                      data={yearData[visibleYear]?.contributions || []}
+                      loading={Object.keys(yearData).length === 0}
+                      blockSize={10}
+                      blockRadius={2}
+                      blockMargin={3}
+                      fontSize={12}
+                      theme={{
+                        dark: ['#161b22', '#0e4429', '#006d32', '#26a641', '#39d353'],
+                        light: ['#ebedf0', '#9be9a8', '#40c463', '#30a14e', '#216e39'],
+                      }}
+                      colorScheme={isDarkMode ? 'dark' : 'light'}
+                      showWeekdayLabels={true}
+                    />
+                  </div>
 
-                {/* Real GitHub PRs List */}
-                <GitHubContributions />
-              </SpotlightCard>
+                  {/* Real GitHub PRs List */}
+                  <GitHubContributions />
+                </SpotlightCard>
+              </motion.div>
             </section>
 
-            <ContactForm />
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.5 }}
+            >
+              <ContactForm />
+            </motion.div>
 
             {/* Footer */}
             <footer className="py-4 text-center text-neutral-400 dark:text-neutral-700 text-[10px] border-t border-zinc-200 dark:border-neutral-900">
