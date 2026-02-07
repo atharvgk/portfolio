@@ -41,7 +41,7 @@ export const SpotlightCard = ({ children, className = "" }: { children: React.Re
             onMouseMove={handleMouseMove}
             onMouseEnter={() => setOpacity(1)}
             onMouseLeave={() => setOpacity(0)}
-            className={` relative rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/50 overflow-hidden ${className}`}
+            className={`relative rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/50 overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:border-black/80 hover:shadow-[0_0_20px_rgba(0,0,0,0.3)] dark:hover:border-white/80 dark:hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] ${className}`}
         >
             <div
                 className="pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-300"
