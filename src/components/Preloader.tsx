@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useLayoutEffect } from "react";
 import { motion } from "framer-motion";
+import { Logo } from "./ui/Logo";
 
 // Use useLayoutEffect on client, useEffect on server
 const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
@@ -41,37 +42,28 @@ export const Preloader = ({ onComplete }: { onComplete: () => void }) => {
         <motion.div
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className={`fixed inset-0 z-[100] flex flex-col justify-center items-center ${isDark ? "bg-zinc-950" : "bg-white"
-                }`}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+            className={`fixed inset-0 z-100 flex flex-col justify-center items-center gap-5 ${isDark ? "bg-zinc-950" : "bg-white"}`}
         >
-            {/* Simple pulsing dots using CSS */}
-            <div className="flex items-center gap-2">
-                {[0, 1, 2].map((i) => (
-                    <div
-                        key={i}
-                        className={`h-2.5 w-2.5 rounded-full ${isDark ? "bg-zinc-400" : "bg-zinc-500"
-                            }`}
-                        style={{
-                            animation: `pulse 1s ease-in-out ${i * 0.15}s infinite`,
-                        }}
-                    />
-                ))}
-            </div>
+            {/* Logo mark */}
+            <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                className={`w-10 h-10 ${isDark ? "text-white" : "text-black"}`}
+            >
+                <Logo className="w-full h-full" />
+            </motion.div>
 
-            {/* CSS keyframes */}
-            <style jsx>{`
-                @keyframes pulse {
-                    0%, 100% {
-                        transform: scale(1);
-                        opacity: 0.5;
-                    }
-                    50% {
-                        transform: scale(1.3);
-                        opacity: 1;
-                    }
-                }
-            `}</style>
+            {/* Loading bar */}
+            <div className={`relative w-24 h-px overflow-hidden rounded-full ${isDark ? "bg-zinc-800" : "bg-zinc-200"}`}>
+                <motion.div
+                    className={`absolute inset-y-0 left-0 rounded-full ${isDark ? "bg-zinc-400" : "bg-zinc-600"}`}
+                    initial={{ width: "0%" }}
+                    animate={{ width: "100%" }}
+                    transition={{ duration: 1.6, ease: "easeInOut" }}
+                />
+            </div>
         </motion.div>
     );
 };
