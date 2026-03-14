@@ -73,7 +73,7 @@ export const Sidebar = () => {
                          {activeSection === id && (
                              <motion.div
                                  layoutId="activeSection"
-                                 className="absolute inset-0 bg-blue-500/10 dark:bg-purple-500/10 rounded-full"
+                                 className="absolute inset-0 bg-purple-500/10 rounded-full"
                                  initial={{ opacity: 0, scale: 0.8 }}
                                  animate={{ opacity: 1, scale: 1 }}
                                  exit={{ opacity: 0, scale: 0.8 }}
@@ -83,7 +83,7 @@ export const Sidebar = () => {
                             size={18} 
                             className={`transition-colors duration-300 ${
                                 activeSection === id 
-                                ? "text-blue-600 dark:text-purple-400" 
+                                ? "text-purple-500 dark:text-purple-400" 
                                 : "text-neutral-400 dark:text-neutral-600 group-hover:text-black dark:group-hover:text-white"
                             }`} 
                         />

@@ -1,7 +1,7 @@
 import React from "react";
 import { Inter, Space_Grotesk } from "next/font/google";
 import { AnimatePresence, motion } from "framer-motion";
-import { MapPin, ArrowUpRight, Terminal, Github } from "lucide-react";
+import { MapPin, ArrowUpRight, Terminal as TerminalIcon, Github, ChevronRight } from "lucide-react";
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 
@@ -47,7 +47,8 @@ export default function Portfolio() {
   const [yearData, setYearData] = React.useState<{ [key: number]: YearData }>({});
   const [isLoading, setIsLoading] = React.useState(true);
   const [isDarkMode, setIsDarkMode] = React.useState(false);
-  const [visibleYear, setVisibleYear] = React.useState(2026);
+  const [visibleYear, setVisibleYear] = React.useState(new Date().getFullYear());
+  const [availableYears, setAvailableYears] = React.useState<number[]>([new Date().getFullYear()]);
 
   // Track theme changes
   React.useEffect(() => {
@@ -71,10 +72,26 @@ export default function Portfolio() {
   React.useEffect(() => {
     async function fetchCalendar() {
       try {
-        const years = [2025, 2026];
+        // First, dynamically fetch the user's account creation year
+        const userRes = await fetch("https://api.github.com/users/atharvgk");
+        const userData = await userRes.json();
+        
+        const currentYear = new Date().getFullYear();
+        const startYear = userData?.created_at 
+          ? new Date(userData.created_at).getFullYear() 
+          : 2024; // Fallback to 2024 if rate limited
+          
+        // Create an array of years from start year to current year
+        const dynamicYears = Array.from(
+          { length: currentYear - startYear + 1 }, 
+          (_, i) => startYear + i
+        );
+        
+        setAvailableYears(dynamicYears);
+
         const data: { [key: number]: YearData } = {};
 
-        for (const year of years) {
+        for (const year of dynamicYears) {
           const response = await fetch(`/api/github-contributions?year=${year}`);
           const json = await response.json();
           if (json.contributions) {
@@ -184,7 +201,7 @@ export default function Portfolio() {
                   <a
                     href="/atharv_resume.pdf"
                     target="_blank"
-                    className="flex items-center gap-2 px-4 py-2 bg-neutral-900 dark:bg-white text-white dark:text-black rounded-lg text-sm font-medium hover:opacity-90 transition-opacity"
+                    className="flex items-center gap-2 px-4 py-2 bg-purple-500 dark:bg-purple-400 text-white dark:text-black rounded-lg text-sm font-medium hover:opacity-90 transition-opacity"
                   >
                     View Resume <ArrowUpRight size={14} />
                   </a>
@@ -250,9 +267,15 @@ export default function Portfolio() {
 
                       <span className="opacity-10 hidden md:block text-zinc-500">•</span>
 
-                      {/* Spotify */}
-                      <div className="shrink-0">
-                        <SpotifyCard />
+                      {/* GitHub Contributions */}
+                      <div className="flex items-center gap-2 group transition-all duration-300 hover:-translate-y-0.5 cursor-default shrink-0">
+                        <Github size={13} className="text-neutral-600 dark:text-zinc-500 group-hover:text-black dark:group-hover:text-white transition-colors" />
+                        <div className="flex flex-col">
+                          <span className="text-[9px] font-bold text-neutral-600 dark:text-zinc-600 uppercase tracking-wider">Contributions</span>
+                          <span className="text-xs font-medium text-neutral-700 dark:text-zinc-300 group-hover:text-black dark:group-hover:text-white transition-colors">
+                            {yearData[new Date().getFullYear()]?.total ?? '—'} in {new Date().getFullYear()}
+                          </span>
+                        </div>
                       </div>
 
                       <span className="opacity-10 hidden md:block text-zinc-500">•</span>
@@ -292,12 +315,15 @@ export default function Portfolio() {
                           <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-100">{job.role}</h3>
                           <span className="text-[11px] font-mono text-neutral-500">{job.date}</span>
                         </div>
-                        <p className="text-accent-400 text-sm font-medium mb-1.5">{job.company}</p>
-                        <ul className="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed list-disc pl-4 space-y-1">
-                          {job.bullets.map((bullet, k) => (
-                            <li key={k}>{bullet}</li>
-                          ))}
-                        </ul>
+                        <p className="text-purple-500 dark:text-purple-400 text-sm font-medium mb-1.5">{job.company}</p>
+                         <div className="flex flex-col space-y-1">
+                           {job.bullets.map((bullet, k) => (
+                             <div key={k} className="flex items-start gap-1.5">
+                               <ChevronRight size={14} className="text-purple-500 dark:text-purple-400 shrink-0 mt-1" />
+                               <span className="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed">{bullet}</span>
+                             </div>
+                           ))}
+                         </div>
                       </div>
                     </SpotlightCard>
                   </motion.div>
@@ -321,15 +347,18 @@ export default function Portfolio() {
                         <div className="flex flex-col gap-1 mb-2">
                           <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-100 leading-snug">{pub.title}</h3>
                           <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs text-neutral-500 font-mono gap-1">
-                            <span className="text-accent-400 font-medium italic">{pub.conference}</span>
+                            <span className="text-purple-500 dark:text-purple-400 font-medium italic">{pub.conference}</span>
                             <span className="shrink-0">{pub.date}</span>
                           </div>
                         </div>
-                        <ul className="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed list-disc pl-4 space-y-1">
-                          {pub.bullets.map((bullet, k) => (
-                            <li key={k}>{bullet}</li>
-                          ))}
-                        </ul>
+                         <div className="flex flex-col space-y-1">
+                           {pub.bullets.map((bullet, k) => (
+                             <div key={k} className="flex items-start gap-1.5">
+                                <ChevronRight size={14} className="text-purple-500 dark:text-purple-400 shrink-0 mt-1" />
+                               <span className="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed">{bullet}</span>
+                             </div>
+                           ))}
+                         </div>
                       </div>
                     ))}
                   </div>
@@ -359,7 +388,7 @@ export default function Portfolio() {
 
                       <div className="relative z-10">
                         <div className="flex justify-between items-start mb-3">
-                          <span className="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-accent-500/10 text-accent-500 border border-accent-500/20">
+                          <span className="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-purple-500/10 text-purple-500 dark:bg-purple-400/10 dark:text-purple-400 border border-purple-500/20 dark:border-purple-400/20">
                             Featured
                           </span>
                           <div className="flex gap-2">
@@ -406,7 +435,7 @@ export default function Portfolio() {
                       <div className="relative z-10 flex flex-col h-full">
                         <div className="flex justify-between items-start mb-3">
                           <div className="p-2 bg-zinc-100/50 dark:bg-neutral-800/50 rounded-lg border border-zinc-200/50 dark:border-neutral-700/50">
-                            <Terminal size={16} className="text-neutral-400" />
+                            <TerminalIcon size={16} className="text-neutral-400" />
                           </div>
                           <div className="flex gap-2">
                             {project.repo && (
@@ -617,13 +646,13 @@ export default function Portfolio() {
                     <span className="text-sm text-neutral-600 dark:text-neutral-400">
                       <span className="font-semibold text-black dark:text-white">{yearData[visibleYear]?.total || 0}</span> contributions in {visibleYear}
                     </span>
-                    <div className="flex gap-2">
-                      {[2025, 2026].map((year) => (
+                    <div className="flex gap-2 flex-wrap justify-end">
+                      {availableYears.map((year) => (
                         <button
                           key={year}
                           onClick={() => setVisibleYear(year)}
                           className={`text-xs px-2 py-1 rounded transition-all ${visibleYear === year
-                            ? 'bg-accent-500/20 text-accent-400 font-medium'
+                            ? 'bg-purple-500/20 text-purple-500 font-medium dark:bg-purple-400/20 dark:text-purple-400'
                             : 'text-neutral-500 hover:text-black dark:hover:text-white'
                             }`}
                         >
