@@ -25,10 +25,18 @@ export default async function handler(
         }
 
         // summaries endpoint returns data as an array
-        // summaries endpoint returns data as an array
         const summaries = statsData.data;
-        // The last item in the array is "today" (because we fetched up to "tomorrow")
-        const activeDay = summaries[summaries.length - 1];
+        
+        // We fetched up to "tomorrow" to account for timezones, so the last item might be empty (0 seconds)
+        // Find the most recent day that actually has coding activity, or default to the last available day
+        let activeDay = summaries[summaries.length - 1];
+        
+        for (let i = summaries.length - 1; i >= 0; i--) {
+            if (summaries[i].grand_total?.total_seconds > 0) {
+                activeDay = summaries[i];
+                break;
+            }
+        }
 
         const data = activeDay;
 

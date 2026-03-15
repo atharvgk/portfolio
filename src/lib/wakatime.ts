@@ -17,19 +17,24 @@ export const getStats = async () => {
     startObj.setDate(startObj.getDate() - 7);
     const start = startObj.toISOString().split('T')[0];
 
-    const response = await fetch(
-        `${WAKATIME_API}/users/current/summaries?start=${start}&end=${tomorrow}`,
-        {
-            headers,
-            cache: 'no-store'
-        }
-    );
+    try {
+        const response = await fetch(
+            `${WAKATIME_API}/users/current/summaries?start=${start}&end=${tomorrow}`,
+            {
+                headers,
+                cache: 'no-store'
+            }
+        );
 
-    if (!response.ok) {
+        if (!response.ok) {
+            return { data: [] };
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error('WakaTime fetch error:', error);
         return { data: [] };
     }
-
-    return response.json();
 };
 
 export const getCurrentActivity = async () => {
