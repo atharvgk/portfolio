@@ -79,12 +79,19 @@ export const PROJECTS = [
 
 export const EXPERIENCE = [
     {
+        company: "span.io",
+        role: "Software Engineering Intern",
+        date: "Mar 2026 - Present",
+        bullets: [
+            "Mobile and Cloud Intern.",
+        ]
+    },
+    {
         company: "ISFCR",
         role: "Research Intern",
-        date: "Jan 2026 - Present",
+        date: "Jan 2026 - Mar 2026",
         bullets: [
-            "Conducting research on advanced topics.",
-            // "Detailed work description pending..." 
+            "Developing a static analysis tool to assess real exploitability of vulnerable dependency functions in applications using AST based call graph construction and reachability analysis.",
         ]
     },
     {
