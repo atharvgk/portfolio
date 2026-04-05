@@ -79,7 +79,7 @@ export const PROJECTS = [
 
 export const EXPERIENCE = [
     {
-        company: "span.io",
+        company: "SPAN.IO",
         role: "Software Engineering Intern",
         date: "Mar 2026 - Present",
         bullets: [
