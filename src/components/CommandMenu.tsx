@@ -61,7 +61,7 @@ export const CommandMenu = () => {
 
                                 <Command.Group heading="Socials" className="text-xs text-zinc-500 font-mono mb-2 px-2">
                                     <Item icon={Github} text="GitHub" action={() => window.open("https://github.com/atharvgk")} />
-                                    <Item icon={Linkedin} text="LinkedIn" action={() => window.open("https://www.linkedin.com/in/atharv-katyarmal-990304250/")} />
+                                    <Item icon={Linkedin} text="LinkedIn" action={() => window.open("https://www.linkedin.com/in/atharv-katyarmal/")} />
                                 </Command.Group>
                             </Command.List>
                         </Command>

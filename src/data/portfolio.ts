@@ -14,7 +14,7 @@ export const PERSONAL_INFO = {
     email: "atharv.katyarmal@gmail.com",
     socials: [
         { name: "GitHub", href: "https://github.com/atharvgk", icon: Github },
-        { name: "LinkedIn", href: "https://www.linkedin.com/in/atharv-katyarmal-990304250/", icon: Linkedin },
+        { name: "LinkedIn", href: "https://www.linkedin.com/in/atharv-katyarmal/", icon: Linkedin },
         { name: "LeetCode", href: "https://leetcode.com/u/atharv_katyarmal/", icon: LeetCodeIcon },
         { name: "X (Twitter)", href: "https://x.com/AtharvKaty46250", icon: Twitter },
         { name: "Email", href: "mailto:atharv.katyarmal@gmail.com", icon: Mail },

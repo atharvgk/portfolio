@@ -47,7 +47,7 @@ export const Seo = ({ title, description, image = "/opengraph-image" }: SeoProps
                     "knowsAbout": ["Full Stack Development", "Artificial Intelligence", "Distributed Systems", "Web Development", "Next.js", "React"],
                     "sameAs": [
                         "https://github.com/atharvgk",
-                        "https://www.linkedin.com/in/atharv-katyarmal-990304250/",
+                        "https://www.linkedin.com/in/atharv-katyarmal/",
                         "https://x.com/AtharvKaty46250",
                         "https://leetcode.com/u/atharv_katyarmal/"
                     ]
